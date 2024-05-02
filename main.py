@@ -48,10 +48,34 @@ class bookDatabase: #Stores all books
         for Book in self.books.values():
             Book.show()
 
+    def book_list(self):
+        return self.books.values()
+
+class bookSearch(bookDatabase): #searches for book
+    def __init__(self, books):
+        self.books = books
+
+    def search_book(self, search, books):
+        for Book in books:
+            if (search == Book.name):
+                print(Book.name + " has been found!")
+                break
+            else:
+                print("Searching...not found")
+
+class bookInventory(bookDatabase): #prints all book titles and stock count
+    def __init__(self, books):
+        self.books = books
+
+    def showInventory(self, books):
+        print("---Current Book Inventory---")
+        for Book in books:
+            print(f'{Book.ID}' + " " + Book.name + " (" + f'{Book.stock}' + " in stock)")
 
 
 if __name__ == "__main__":
     data = bookDatabase()
+    search = ""
     book1 = Book(1, "Harry Potter", "J.K Rowling", "Fantasy", 17.99, 6)
     book2 = Book(2, "The Ministry of Time", "Kaliane Bradley", "Romance", 14.99, 3)
     book3 = Book(3, "The Demon of Unrest", "Erik Larson", "Biography", 19.99, 5)
@@ -64,4 +88,9 @@ if __name__ == "__main__":
     data.add_book(book4)
     data.add_book(book5)
 
-    data.show_All()
+    #data.show_All()
+    #bookToSearch = bookSearch(data)
+    #bookToSearch.search_book("The Demon of Unrest", data.book_list())
+    #bookStock = bookInventory(data)
+    #bookStock.showInventory(data.book_list())
+
