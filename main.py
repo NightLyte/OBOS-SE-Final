@@ -70,7 +70,7 @@ class bookInventory(bookDatabase): #prints all book titles and stock count
         for Book in books:
             print(f'{Book.ID}' + " " + Book.name + " (" + f'{Book.stock}' + " in stock)")
 
-class shoppingCart(bookDatabase):
+class shoppingCart(bookDatabase): #stores items and conducts item manipulation in the cart
     def __init__(self, books):
         self.items = []
         self.books = books
@@ -103,7 +103,8 @@ class shoppingCart(bookDatabase):
         price = 0
         for item in self.items:
             price = price+item.price
-        return price
+        taxPrice = price + (price*0.04)
+        return round(taxPrice,2)
 
     def showCart(self):
         print("--- Cart Items ---")
@@ -112,7 +113,7 @@ class shoppingCart(bookDatabase):
             print(currentIndex, item.name, item.price)
         print("")
 
-def printInstructions():
+def printInstructions(): #prints instructions
     print("Type C to view cart items")
     print("Type R to remove an item from cart")
     print("Type S to search for a book")
@@ -122,42 +123,64 @@ def printInstructions():
     print("Type X to exit")
     print("Type F to checkout")
 
+def printReceipt(shoppingCart):
+    print("Customer: " + username)
+    print(shoppingCart.showCart())
 
+def checkout(shoppingCart):
+    totalPrice = shoppingCart.priceCart()
+    print("Items added to cart. Your total is " + f'{totalPrice}')
+    print("Would you like in-person pickup (1) or delivery (2)?")
+    userDelivery = int(input())
+    if(userDelivery == 1):
+        print("In-Person Pickup Selected.")
+    elif(userDelivery == 2):
+        print("Delivery Selected.")
 
-def inputHandler(in_var, cart):
+    print("Confirm purchase? (Y/N): ")
+    userCheckout = (input())
+    if (userCheckout == "Y"):
+        print("Order confirmed. Prnting receipt...")
+        printReceipt(shoppingCart)
+    elif (userCheckout == "N"):
+        print("Order cancelled.")
+    global done
+    done = True
+
+def inputHandler(in_var, cart): #handles user input for commands while the main program loop is running
     char_inputs = ["C", "A", "S", "I" "R", "P", "F", "X"]
     if(in_var == "C"):
-        cart.showCart()
+        cart.showCart() #shows current cart
     if(in_var == "R"):
-        cart.removeFromCart()
+        cart.removeFromCart() #removes item from cart
     if(in_var == "S"):
         print("Book search started")
         bookToSearch = bookSearch(data)
         print("Enter a title: ")
         userSearch = input()
-        bookToSearch.search_book(userSearch, data.book_list())
+        bookToSearch.search_book(userSearch, data.book_list()) #user book search
         print("Exiting book search...")
     if(in_var == "A"):
-        shoppingCart.addToCart(cart)
+        shoppingCart.addToCart(cart) #adds item to cart
     if(in_var == "I"):
         print("Looking through inventory...")
         bookStock = bookInventory(data)
-        bookStock.showInventory(data.book_list())
+        bookStock.showInventory(data.book_list()) #shows stock of all books in database
         print("Exiting inventory...")
     if(in_var == "P"):
-        print("Total: $" + f'{cart.priceCart()}')
+        print("Total: $" + f'{cart.priceCart()}') #gets total price of items in cart
     if(in_var == "F"):
-        print("FInish.")
+        print("Wrapping up...") #compiles and outputs a receipt
+        checkout(cart)
     if(in_var=="X"):
         global done
         done = True
-        print("Thank you! Application closing...")
+        print("Thank you! Application closing...") #exits the application
     #if in_var not in char_inputs:
     #    print("Incorrect input!")
 
-if __name__ == "__main__":
+if __name__ == "__main__": #main
     data = bookDatabase()
-    #search = ""
     username = ""
     book1 = Book(1, "Harry Potter", "J.K Rowling", "Fantasy", 17.99, 6)
     book2 = Book(2, "The Ministry of Time", "Kaliane Bradley", "Romance", 14.99, 3)
@@ -183,10 +206,4 @@ if __name__ == "__main__":
         input_var = input()
         inputHandler(input_var, cart)
 
-
-    #data.show_All()
-    #bookToSearch = bookSearch(data)
-    #bookToSearch.search_book("The Demon of Unrest", data.book_list())
-    #bookStock = bookInventory(data)
-    #bookStock.showInventory(data.book_list())
-
+    print("Thank you for shopping! Exiting appilcation...")
