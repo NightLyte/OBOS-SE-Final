@@ -1,0 +1,73 @@
+{"books": [
+    {"id": 1,
+     "title": "Harry Potter and the Half-Blood Prince",
+     "author": ["J.K Rowling"],
+     "genre": ["Fantasy"],
+     "price": [17.99],
+     "inventory": [6]
+    },
+    {"id": 2,
+      "title": "The Ministry of Time: A Novel",
+     "author": ["Kaliane Bradley"],
+     "genre": ["Romance"],
+     "price": ["14.99"],
+     "inventory": [3]
+    },
+    {"id": 3,
+      "title": "The Demon of Unrest",
+     "author": ["Erik Larson"],
+     "genre": ["Biography"],
+     "price": [19.99],
+     "inventory": [5]
+    },
+    {"id": 4,
+      "title": "Real Americans",
+     "author": ["Rachel Khong"],
+     "genre": ["Urban Fiction"],
+     "price": [20.99],
+     "inventory": [2]
+    },
+    { "id": 5,
+      "title": "Skin & Bones",
+     "author": ["Renee Wilson"],
+     "genre": ["Mystery"],
+     "price": [25],
+     "inventory": [8]
+    },
+    {"id": 6,
+      "title": "Hunted",
+     "author": ["Abir Mukhherjee"],
+     "genre": ["Thriller"],
+     "price": [30],
+     "inventory": [7]
+    },
+    {"id": 7,
+      "title": "Table for Two",
+     "author": ["Amor Towles"],
+     "genre": ["Satire"],
+     "price": [21.99],
+     "inventory": [12]
+    },
+    {"id": 8,
+      "title": "Whiskey Tender: A Memoir",
+     "author": ["Deborah Taffa"],
+     "genre": ["Memoir"],
+     "price": [17.99],
+     "inventory": [5]
+    },
+    {"id": 9,
+      "title": "Red Rising",
+     "author": ["Pierce Brown"],
+     "genre": ["Science Fiction"],
+     "price": [12.99],
+     "inventory": [4]
+    },
+    {"id": 10,
+      "title": "Dune",
+     "author": ["Frank Herbert"],
+     "genre": ["Adventure"],
+     "price": [23.99],
+     "inventory": [9]
+    }
+  ]
+}
