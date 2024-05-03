@@ -76,7 +76,7 @@ class TestShoppingCart(unittest.TestCase):
         self.cart.addToCart()
         self.assertEqual(len(self.cart.items), 1)
 
-    @patch('builtins.input', side_effect=[0])
+    @patch('builtins.input', side_effect=[0,1])
     def test_remove_from_cart(self, mock_input):
         self.cart.addToCart()
         self.cart.removeFromCart()
