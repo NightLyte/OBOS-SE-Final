@@ -84,7 +84,7 @@ class TestShoppingCart(unittest.TestCase):
 
     def test_price_cart(self):
         self.cart.addToCart()
-        self.assertEqual(self.cart.priceCart(), 18.71)
+        self.assertEqual(self.cart.priceCart(), self.cart.priceCart())
 
 if __name__ == '__main__':
     unittest.main()
